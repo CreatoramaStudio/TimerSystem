@@ -20,6 +20,7 @@ void UTimerSubsystem::Deinitialize()
 
 void UTimerSubsystem::StartTimer(const float Rate, const bool bLoop, const float FirstDelay)
 {
+	TimerRate = Rate;
 	GetWorld()->GetTimerManager().SetTimer(TimerHandle,this,&UTimerSubsystem::TimerFinished,Rate,bLoop,FirstDelay);
 
 	OnTimerStarted.IsBound() ? OnTimerStarted.Broadcast() : FLogTimerSystem::Info("UTimerSubsystem::StartTimer OnTimerStarted.IsBound is false");
@@ -64,6 +65,11 @@ float UTimerSubsystem::GetTimerElapsed() const
 float UTimerSubsystem::GetTimerRemaining() const
 {
 	return GetWorld()->GetTimerManager().GetTimerRemaining(TimerHandle);
+}
+
+float UTimerSubsystem::GetTimerRate() const
+{
+	return TimerRate;
 }
 
 void UTimerSubsystem::TimerFinished() const

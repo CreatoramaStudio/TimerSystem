@@ -37,6 +37,8 @@ class TIMERSYSTEM_API UTimerSubsystem : public UWorldSubsystem
 
 	FTimerHandle TimerHandle;
 
+	float TimerRate;
+
 	private:
 
 	public:
@@ -69,6 +71,9 @@ class TIMERSYSTEM_API UTimerSubsystem : public UWorldSubsystem
 
 	UFUNCTION(BlueprintPure,Category= "Timer System")
 	float GetTimerRemaining() const;
+
+	UFUNCTION(BlueprintPure,Category= "Timer System")
+	float GetTimerRate() const;
 
 	void TimerFinished() const;
 
